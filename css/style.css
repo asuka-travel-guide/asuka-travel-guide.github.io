@@ -1,0 +1,2148 @@
+/*==================================================
+  明日香村観光ガイド
+  style.css Clean & Optimized Edition
+==================================================*/
+
+/*==========================================
+  0. Design Variables (共通変数)
+==========================================*/
+:root {
+  /* Brand Colors */
+  --primary-color: #20593c;       /* 深緑（ロゴ・メイン） */
+  --primary-hover: #2d8a55;       /* ホバー・アクセント緑 */
+  --bg-light-green: #d3f7e0;      /* 薄緑背景（通知・ターゲット） */
+
+  /* Text Colors */
+  --text-main: #444444;           /* メイン文字 */
+  --text-sub: #555555;            /* 本文・説明 */
+  --text-muted: #666666;          /* 補足文字 */
+  --text-light: #999999;          /* フッター等薄い文字 */
+
+  /* Border Colors */
+  --border-light: #eeeeee;        /* 薄い区切り線 */
+  --border-main: #dddddd;         /* 標準枠線・下線 */
+  --border-dark: #999999;         /* 濃いめd8d8d8枠線 */
+
+  /* Radius & Shadows */
+  --radius-sm: 5px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 18px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+
+  /* Transition */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+
+/*==========================================
+  1. Reset & Base
+==========================================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  color: var(--text-main);
+  background: #fff;
+  line-height: 1.7;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* キーボード操作でフォーカスが当たった際のアクセシビリティ */
+a:focus-visible {
+  outline: 2px solid var(--primary-hover);
+  outline-offset: 4px;
+}
+
+
+/*==========================================
+  2. Common Typography & Layout Components
+==========================================*/
+
+/* 共通見出し設定 */
+h1 {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+
+
+.lead{
+  text-indent: 1em;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-sub);
+
+  margin: 0 auto 20px;
+  padding: 0px 20px;
+  border-bottom: 1px solid var(--border-main);
+}
+
+.lead:last-child {
+  margin-bottom: 0;
+}
+
+
+
+.explain{
+  text-indent: 1em;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-sub);
+  margin: 0 auto 20px;
+}
+
+.explain:last-child {
+  margin-bottom: 0;
+}
+
+
+
+/* 配置設定用コンテナ */
+
+.spot-main,
+.spot-detail-main,
+.gourmet-main,
+.toilet-main,
+.stay-main,
+.parking-main,
+.contact-main {
+  max-width: 1440px;
+  margin: 74px 0px 80px;
+  padding: 0px;
+}
+
+
+
+
+
+
+.spot-container,
+.stay-container,
+.gourmet-container,
+.parking-container,
+.toilet-container{
+  max-width:1020px;
+  margin: 0 auto 10px; 
+  width: calc(100% - 40px); /* 幅いっぱいでも、左右に最低20px（計40px）の余白を残す */
+  padding: 0;
+}
+
+
+.top-container{
+  max-width:1020px;
+  margin: 0 auto; 
+  padding: 0;
+}
+
+
+.contact-container,
+.spot-detail-container {
+  max-width:720px;
+  margin: 0 auto; 
+  width: calc(100% - 40px); /* 幅いっぱいでも、左右に最低20px（計40px）の余白を残す */
+  padding: 0;
+}
+
+
+
+
+
+/*==========================================
+  カード統一指定
+==========================================*/
+
+.nolink-photo-card,
+.link-card,
+.link-photo-card {
+  flex: 0 0 320px;
+  width: 320px;
+  display: block;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+  scroll-margin-top: 70px; /* PCヘッダー高さ(64px＋フローティング) */
+}
+
+
+
+.link-card,
+.link-photo-card{
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+
+
+.link-card {
+  padding: 24px;
+  cursor: pointer; /* 指マークに変える */
+ }
+
+
+
+
+
+/* カード：フローティング*/
+.link-photo-card:hover,
+.link-card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-hover);
+}
+
+
+
+
+
+/* 周辺スライダー / スポット一覧の駐車場・トイレカードの幅「枠」としての役割 */
+.related-slider .info-block {
+  flex: 0 0 320px !important;
+  width: 320px !important;
+}
+
+
+
+
+
+
+/* カード画像：16:9 統一 */
+.link-photo-card img,
+.nolink-photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+
+.link-photo-card h3, 
+.nolink-photo-card h3 {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px 20px 10px;
+  color: var(--text-main);
+}
+
+
+.link-card h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+
+
+
+
+.nolink-photo-card p,
+.link-photo-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  padding: 0 20px 22px;
+}
+
+
+
+
+.link-card:target {
+  border: 2px solid var(--primary-hover);
+  background: var(--bg-light-green);
+  box-shadow: 0 8px 20px rgba(45, 138, 85, 0.18);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+
+.link-card:target:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(45, 138, 85, 0.25);
+}
+
+
+
+
+
+
+
+/* 共通広告枠 */
+.ad-space {
+  width: 90%;
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 30px;
+  border: 2px dashed var(--border-dark);
+  border-radius: var(--radius-md);
+  background: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+
+/*==========================================
+  3. Header & Navigation
+==========================================*/
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 999;
+}
+
+
+.header-container {
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width:1020px;
+  margin: 0 auto; 
+  padding: 0 20px;
+}
+
+
+
+
+
+
+.logo {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+}
+
+/* トップページのロゴ(h1)：共通h1の下余白でロゴだけ位置がずれるのを防ぐ */
+h1.logo {
+  margin: 0;
+}
+
+
+nav > ul {
+  display: flex;
+  gap: 42px;
+}
+
+
+nav li {
+  position: relative;
+}
+
+
+nav a {
+  font-size: 16px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+
+nav a:hover {
+  color: var(--primary-hover);
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateX(-50%);
+  width: 150px;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  padding-top: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.dropdown-menu ul {
+  background: #fff;
+  padding: 8px 0;
+  border-radius: var(--radius-sm);
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-menu li {
+  display: block;
+  width: 100%;
+}
+
+.dropdown-menu a {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: var(--bg-light-green);
+}
+
+
+/*==========================================
+  4. トップページ
+==========================================*/
+/* Hero Section */
+.hero {
+  margin-top: 64px;
+  height: calc(100vh - 64px - 160px);
+  min-height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: opacity 0.8s ease, transform 10s ease-out;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  z-index: 2;
+}
+
+#hero-title {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+}
+
+
+/* Catch Copy */
+.catch {
+  text-align: center;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.catch p {
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--text-sub);
+  margin: 0;
+}
+
+
+/* Top Sections */
+.about,
+.top-map,
+.news,
+.site-about {
+  padding: 50px 20px;
+}
+
+
+
+
+
+
+.about p,
+.site-about p {
+  text-indent: 1em;
+  font-size: 16px;
+  line-height: 2.1;
+  color: var(--text-sub);
+}
+
+
+
+
+
+/* Map Grid */
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 140px);
+  gap: 20px;
+}
+
+
+.map-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  width: 140px;
+  aspect-ratio: 1 / 1;
+  padding: 16px;
+  text-align: center;
+
+  background: #fff;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.map-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+.map-card span {
+  display: block;
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.map-card h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.map-card p {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+
+/* 最新情報 */
+.news ul {
+  border-top: 1px solid var(--border-main);
+}
+
+.news li {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-sub);
+}
+
+.news time {
+  flex: 0 0 110px;
+  color: var(--primary-hover);
+  font-weight: 600;
+}
+
+
+/* 新着情報のスクロール枠 */
+.news-box {
+  max-height: 120px; /* 約3件分の高さ */
+  overflow-y: auto;  /* 溢れたら縦スクロール */
+  border: 1px solid #aaaaaa;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+
+
+
+/*==========================================
+  5. Spots一覧
+==========================================*/
+
+
+.spot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+
+
+/*==========================================
+  5-1. 駐車場・トイレ部分レイアウト)
+==========================================*/
+.info-row-container {
+  display: flex;
+  flex-wrap: wrap;        /* 画面幅が狭まると自動で折り返して縦並びに */
+  justify-content: center;
+  gap: 40px;
+  margin: 0 auto;
+  padding: 0 20px 50px;
+}
+
+/* 各ブロック（見出し＋カード）の設定 */
+.info-block {
+  flex: 0 0 320px;        /* 幅320px固定 */
+  width: 320px;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.info-block .spot-grid {
+  justify-content: center;
+}
+
+
+
+
+
+
+
+/*==========================================
+  9. スポット・駐車場・トイレ・食べる・泊まる　ページ共通
+==========================================*/
+
+
+
+.spot-map,
+.stay-map,
+.gourmet-map,
+.toilet-map,
+.parking-map {
+  margin-bottom: 50px;
+  justify-content: center;
+  scroll-margin-top: 64px; /* PCヘッダー高さ(64px)に統一 */
+}
+
+
+
+.spot-category,
+.spot-detail-category,
+.parking-category,
+.toilet-category,
+.gourmet-category,
+.stay-category {
+  margin-bottom: 90px;
+  scroll-margin-top: 64px; /* PCヘッダー高さ(64px)に統一 */
+}
+
+
+
+.parking-list,
+.toilet-list,
+.gourmet-list,
+.stay-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+
+
+
+
+.map {
+  max-width: 1020px;
+  margin: 0 auto;
+  width: calc(100% - 40px); /* 幅いっぱいでも、左右に最低20px（計40px）の余白を残す */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.map iframe {
+  width: 100%;
+  height: 72vh;
+  min-height: 520px;
+  max-height: 850px;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+
+.notice {
+  max-width: 1020px;
+  border: 1px solid var(--border-dark);
+  border-left: 5px solid var(--primary-color);
+  border-radius: var(--radius-md);
+  padding: 18px 28px;
+  margin: 0 auto 50px;
+  width: calc(100% - 40px); /* 幅いっぱいでも、左右に最低20px（計40px）の余白を残す */
+}
+
+
+
+/*==========================================
+  10. 駐車場・トイレ　共通
+==========================================*/
+
+.toilet-table,
+.parking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+}
+
+
+.toilet-table th,
+.parking-table th {
+  width: 110px;
+  text-align: left;
+  padding: 10px 0;
+  color: var(--text-muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-light);
+}
+
+
+.toilet-table td,
+.parking-table td {
+  padding: 10px 0;
+  color: var(--text-sub);
+  border-bottom: 1px solid var(--border-light);
+}
+
+
+.toilet-comment,
+.parking-comment {
+  margin-top: 18px;
+  line-height: 1.8;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+
+
+
+
+/*==========================================
+  8. ナンバー
+==========================================*/
+.number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.number.paid {
+  background: #e66a00;
+}
+
+.number.free {
+  background: #0f9d58;
+}
+
+.number.toilet {
+  background: #0288D1;
+}
+
+.number.lunch {
+  background: #f57c00;
+}
+
+.number.cafe {
+  background: #795548;
+}
+
+
+.number.stay {
+  background: #C2185B;
+}
+
+.number.bath {
+  background: #0097A7;
+}
+
+
+
+/*==========================================
+  11. 食べる・泊まる　共通
+==========================================*/
+
+.link-photo-card .gourmet-comment,
+.link-photo-card .stay-comment {
+  padding: 5px 20px 5px;
+  line-height: 1.8;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+
+
+.gourmet-link,
+.stay-link {
+ margin-top: 0px;
+ padding: 0 20px 20px;
+}
+
+.gourmet-link a,
+.stay-link a {
+ font-size: 14px;
+ color: var(--text-sub);
+ text-decoration: underline;
+ font-weight: normal;
+}
+
+.gourmet-link a:hover,
+.stay-link a:hover {
+ color: var(--primary-hover);
+}
+ 
+
+
+/*==========================================
+  12. スポット詳細
+==========================================*/
+
+
+.spot-hero {
+  position: relative;
+  max-width: 540px;
+  width: calc(100% - 40px); /* 幅いっぱいでも、左右に最低20px（計40px）の余白を残す */
+  margin: 0 auto 30px;
+}
+
+
+
+.spot-hero img {
+  width: 100%;
+  max-width: 540px;
+  height: clamp(230px, 40vh, 360px);
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+
+.spot-title {
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+}
+
+
+.spot-title h1 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.90),0 0 4px rgba(0, 0, 0, 0.60);
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+
+.spot-info {
+  max-width: 720px;
+  margin: 0 auto 70px;
+  width: calc(100% - 40px); /* 幅いっぱいでも、左右に最低20px（計40px）の余白を残す */
+  background: #fff;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.spot-info table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.spot-info th {
+  width: 120px;
+  padding: 14px 10px;
+  text-align: left;
+  vertical-align: top;
+  color: var(--text-muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.spot-info td {
+  padding: 14px 10px;
+  line-height: 1.9;
+  color: var(--text-sub);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.spot-info tr:last-child th,
+.spot-info tr:last-child td {
+  border-bottom: none;
+}
+
+.spot-info a {
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.spot-info a:hover {
+  text-decoration: underline;
+}
+
+.spot-map iframe {
+  max-width: 1020px;
+  width: 100%;
+  height: 500px;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* 横スライダー（共通） */
+.related {
+  overflow: visible;
+}
+
+.related-scroll {
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  padding-top: 15px;
+  margin-top: -15px;
+  padding-bottom: 15px;
+  margin-bottom: -15px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.related-slider {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+}
+
+.related-slider img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.related-scroll.dragging {
+  cursor: grabbing;
+}
+
+
+/*==========================================
+  13. お問い合わせ
+==========================================*/
+
+.contact-container a {
+ font-size: 16px;
+ color: var(--text-sub);
+ text-decoration: underline;
+ font-weight: normal;
+}
+
+
+.contact-container a:hover {
+ color: var(--primary-hover);
+}
+
+
+
+/*==========================================
+  14. Footer
+==========================================*/
+footer {
+  border-top: 1px solid var(--border-light);
+  background: #fff;
+  text-align: center;
+  padding: 22px 0;
+}
+
+footer nav {
+  margin-bottom: 8px;
+}
+
+footer nav a {
+  font-size: 13px;
+  color: var(--text-light);
+  transition: var(--transition-fast);
+}
+
+footer nav a:hover {
+  color: var(--primary-color);
+}
+
+.separator {
+  color: var(--border-main);
+}
+
+footer p {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+
+
+
+
+/*==========================================
+  15. Responsive (Media Queries 一元管理)
+==========================================*/
+
+
+/* --- 768px 以下 (ipad縦画面) --- */
+@media (max-width: 768px) {
+
+ .map iframe {
+   height: 60vh;
+   min-height: 420px;
+  }
+
+
+
+/* --- トップページ --- */
+ .news li {
+   display: block;
+  }
+
+ .news time {
+   display: block;
+   margin-bottom: 8px;
+  }
+
+
+ 
+}
+
+
+
+
+/* --- 600px 以下 (ヘッダー：ロゴ2行・メニュー横並び／高さ64px固定) --- */
+@media (max-width: 600px) {
+
+ .header-container {
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 10px;
+  }
+
+ /* ロゴ：475px未満は12px固定（475〜600pxは下の専用ブロックで18px）。メニュー間は443px未満で14pxまで狭め、360px未満はメニュー文字を縮める */
+ .logo {
+   flex: 0 1 auto;
+   font-size: 12px;
+   font-weight: 500;
+   line-height: 1.25;
+   letter-spacing: 0.02em;
+  }
+
+ /* ロゴは「明日香村」「観光ガイド」の2行にする（HTML側で .logo-line の span で囲む） */
+ .logo-line {
+   display: block;
+   white-space: nowrap;
+  }
+
+ header nav {
+   flex: 0 0 auto;
+  }
+
+ header nav > ul {
+   gap: clamp(14px, calc((100vw - 318px) / 3), 42px);
+   flex-wrap: nowrap;
+   justify-content: flex-end;
+  }
+
+ header nav a {
+   font-size: clamp(11px, calc((100vw - 132px) / 14.25), 16px);
+   white-space: nowrap;
+  }
+
+ /* ドロップダウン：左端そろえ。右側の最後の2項目は右端そろえにして画面外へはみ出さない */
+ .dropdown-menu {
+   left: 0;
+   transform: none;
+  }
+
+ .dropdown:nth-last-child(-n+2) .dropdown-menu {
+   left: auto;
+   right: 0;
+  }
+
+}
+
+
+
+
+/* --- 475〜600px (ヘッダー：ロゴはPCと同じ18px) --- */
+@media (min-width: 475px) and (max-width: 600px) {
+ .logo {
+   font-size: 18px;
+  }
+}
+
+
+
+
+/* --- 500px 以下 (スマートフォン) --- */
+@media (max-width: 500px) {
+
+
+ h1,
+ h2 {
+  font-size: 18px;
+   }
+
+
+.lead,
+.explain{
+  font-size: 14px;
+}
+
+
+
+/* ヘッダー・ドロップダウンは、上の「600px 以下」ブロックに移動 */
+
+
+
+/* --- トップページ --- */
+.hero {
+    margin-top: 64px;
+    height: 30vh;
+    min-height: 150px;
+  }
+
+ 
+.catch {
+  padding: 50px 20px 40px;
+  height: auto;
+  }
+
+.catch p {
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  }
+
+
+
+
+.spot-main,
+.spot-detail-main,
+.parking-main,
+.toilet-main,
+.gourmet-main,
+.stay-main {
+  margin: 64px 5px 40px;
+}
+
+
+
+
+
+  .parking-category,
+  .toilet-category,
+  .gourmet-category,
+  .stay-category,
+  .spot-category,
+  .parking-map,
+  .toilet-map,
+  .link-card {
+    scroll-margin-top: 64px;
+  }
+
+
+
+
+  
+
+  .spot-info th {
+    width: 80px;
+  }
+
+  
+  .spot-info th,
+  .spot-info td {
+    padding: 5px 5px;
+  }
+
+  
+  .map iframe,
+  .spot-map iframe {
+    height: 50vh;
+    min-height: 320px;
+  }
+
+
+.map {
+  width: calc(100% - 4px); /* 幅いっぱいでも、左右に最低2px（計4px）の余白を残す */
+  border-radius: var(--radius-md);
+}
+
+  
+
+
+
+}
+
+
+/*==========================================
+  16. モデルコースページ専用
+  （旧 model-course.css を統合。共通部分は上記と重複するため省略）
+==========================================*/
+
+
+/*==========================================
+  8. モデルコース：ページ全体のレイアウト
+==========================================*/
+.model-course-main {
+  max-width: 1440px;
+  margin: 74px 0 80px;
+  padding: 0;
+}
+
+.model-course-container {
+  max-width: 1020px;
+  margin: 0 auto 10px;
+  width: calc(100% - 40px);
+  padding: 0;
+}
+
+.model-course-category {
+  padding: 84px 0 64px;    /* 上84px = 区切り線からコース見出し(h2)までの余白 */
+  scroll-margin-top: 64px; /* PCヘッダー高さ(64px)に統一 */
+}
+
+.model-course-category:first-child {
+  padding-top: 0;
+  padding-bottom: 0;   /* h1・説明文とコース一覧ボタンの間隔は、下の #model-course-index の padding-top だけで決める */
+}
+
+/* コース一覧ボタンの区画：h1〜説明文との間には線を引かない */
+#model-course-index {
+  padding-top: 32px;
+  border-top: 0;
+}
+
+/* コースとコースの境目：全幅の細い線で区切る */
+.model-course-category + .model-course-category {
+  border-top: 1px solid var(--text-main);
+}
+
+/* コース見出し：左の太線で「ここから新しいコース」を明示 */
+.model-course-container h2 {
+  margin-bottom: 14px;
+  padding-left: 12px;
+  border-left: 25px solid var(--primary-color);
+  font-weight: 400;
+  color: var(--text-main);
+}
+
+.model-course-map {
+  margin-bottom: 5px;
+  justify-content: center;
+  scroll-margin-top: 76px;   /* 固定ヘッダー(64px)＋余白。リンクから地図へ移動したとき、ヘッダーに密着しない */
+}
+
+/* コース一覧へのジャンプボタン */
+.model-course-index {
+  max-width: 1020px;
+  width: calc(100% - 40px);
+  margin: 0 auto 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.model-course-index a {
+  display: block;
+  min-width: 150px;
+  padding: 11px 16px;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  background: #fff;
+  color: var(--text-main);
+  text-align: center;
+  font-size: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.model-course-index a:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+/* ページ下部の注意書き */
+.model-course-note {
+  max-width: 720px;
+  width: calc(100% - 40px);
+  margin: 0 auto 60px;
+  padding: 18px 22px;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  background: #fafafa;
+}
+
+.model-course-note p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.model-course-note p:last-child {
+  margin-bottom: 0;
+}
+
+
+/*==========================================
+  9. モデルコース：スポットカード
+     写真 240×180px（4:3）＋ 文字領域 160px ＝ 横長カード
+==========================================*/
+.model-course-card {
+  display: flex;
+  flex: 0 0 402px;
+  flex-direction: row;
+  align-items: stretch;
+  width: 402px;
+  min-width: 0;
+  height: 180px;
+  min-height: 180px;
+  max-height: 180px;
+  overflow: hidden;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+}
+
+.model-course-card > img {
+  display: block;
+  flex: 0 0 240px;
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+  height: 180px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.asuka-course-card-body {
+  display: flex;
+  flex: 0 0 160px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 0;
+  width: 160px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.asuka-course-card-body h3 {
+  margin: 0 0 4px;
+  color: var(--text-main);
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.asuka-course-card-body p {
+  margin: 0 0 5px;
+  color: var(--text-sub);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.asuka-course-card-body .asuka-course-duration {
+  margin-bottom: 5px;
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* 説明文は4行まで表示（駐車場カードは対象外） */
+.model-course-card:not(.asuka-course-parking-card) .asuka-course-card-body p:not(.asuka-course-duration) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* START / 駐車場 ラベル */
+.asuka-course-stop-label {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 18px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.asuka-course-detail-link {
+  display: inline-block;
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.asuka-course-detail-link:hover {
+  color: var(--primary-hover);
+}
+
+/* 「詳しく見る」「スタート」は全カードでカード下端にそろえる（駐車場カードは中央寄せのまま） */
+.model-course-card:not(.asuka-course-parking-card) .asuka-course-card-body > .asuka-course-detail-link,
+.model-course-card:not(.asuka-course-parking-card) .asuka-course-card-body > .asuka-course-start-label {
+  margin-top: auto;
+}
+
+.asuka-course-stop-label.asuka-course-start-label {
+  margin-bottom: 0;
+}
+
+/* 説明文中のリンク（例：レンタサイクルはこちら） */
+.asuka-course-card-body p a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 見出し前の丸囲みアルファベット（A〜：マイマップの順路と対応） */
+.asuka-course-stop-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  vertical-align: 1px;
+}
+
+/* 駐車場カード（写真なし・同じ高さの情報カード） */
+.asuka-course-parking-card {
+  justify-content: center;
+}
+
+.model-course-card.asuka-course-parking-card {
+  flex: 0 0 360px;
+  width: 360px;
+  min-height: 180px;
+  border-left: 5px solid var(--primary-color);
+}
+
+.asuka-course-parking-card .asuka-course-card-body {
+  flex: 1 1 auto;
+  width: auto;
+  justify-content: center;
+  padding: 12px 14px;
+}
+
+.asuka-course-parking-card h3 {
+  margin: 2px 0 5px;
+  font-size: 15px;
+}
+
+
+/*==========================================
+  10. モデルコース：移動時間の矢印・GOAL
+==========================================*/
+.asuka-course-connector {
+  display: flex;
+  flex: 0 0 68px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  min-height: 180px;
+  height: 180px;
+  text-align: center;
+}
+
+.asuka-course-connector::before {
+  content: "→";
+  display: block;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.asuka-course-connector-label {
+  display: inline-block;
+  max-width: 68px;
+  padding: 4px 5px;
+  border: 1px solid var(--border-main);
+  border-radius: 20px;
+  background: #fff;
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.asuka-course-goal-card {
+  display: flex;
+  flex: 0 0 220px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 12px;
+  width: 220px;
+  height: 180px;
+  min-height: 180px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  background: #fff;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.asuka-course-goal-card span {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 18px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.asuka-course-goal-card strong {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.asuka-course-goal-card .asuka-course-stop-number {
+  vertical-align: 0;
+}
+
+
+/*==========================================
+  11. モデルコース：昼食候補（脇役なので控えめに）
+      ・枠と背景を無くし、見出しもカードも小さく淡くする
+      ・見出しの左端はコース見出し(h2)と同じ位置にそろえる
+==========================================*/
+.asuka-course-meal-break {
+  width: 100%;
+  min-width: 0;
+  margin-top: 44px;                                   /* スライダーとの間隔 */
+  padding: 0 max(20px, calc((100% - 1020px) / 2));    /* .model-course-container と同じ左右位置 */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.asuka-course-meal-heading h3 {
+  margin: 0 0 12px;
+  padding-left: 14px;
+  border-left: 3px solid var(--border-main);          /* h2(太線5px+余白12px)と文字位置が一致 */
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.asuka-course-meal-break .related-slider {
+  gap: 16px;
+}
+
+.asuka-course-meal-card {
+  display: flex;
+  flex: 0 0 208px;
+  flex-direction: column;
+  width: 208px;
+  padding-bottom: 12px;                               /* line-clamp の p には下余白を付けない（はみ出し防止） */
+  border-color: var(--border-main);
+  box-shadow: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.asuka-course-meal-card > img {
+  flex: 0 0 auto;
+}
+
+.asuka-course-meal-card h3 {
+  padding: 10px 12px 4px;
+  color: var(--text-sub);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.asuka-course-meal-card p {
+  margin: 0;
+  padding: 0 12px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;                              /* 説明は2行まで。詳細はリンク先で */
+  overflow: hidden;
+}
+
+
+/* --- モデルコース：600px 以下 --- */
+@media (max-width: 600px) {
+
+  .model-course-index {
+    width: calc(100% - 12px);
+    margin-bottom: 34px;
+    gap: 8px;
+  }
+
+  .model-course-index a {
+    min-width: calc(50% - 4px);
+    padding: 9px 6px;
+    font-size: 12px;
+  }
+
+  /* 駐車場カードの見出し：モバイルでは通常カードと同じ余白に戻る（元CSSの挙動） */
+  .asuka-course-parking-card h3 {
+    margin: 0 0 4px;
+  }
+
+  .asuka-course-goal-card {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .model-course-category {
+    padding: 60px 0 48px;
+  }
+
+  #model-course-index {
+    padding-top: 24px;
+  }
+}
+
+
+/*==========================================
+  ドライブコース：自由周遊・駐車場案内
+==========================================*/
+.drive-course-intro,
+.drive-parking-content {
+  width: min(1020px, calc(100% - 40px));
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.drive-course-intro {
+  margin-top: 28px;
+  margin-bottom: 4px;
+}
+
+.drive-course-intro h3,
+.drive-parking-group h3,
+.drive-parking-warning h3 {
+  margin: 0 0 10px;
+  color: var(--text-main);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.drive-course-intro p,
+.drive-parking-group > p,
+.drive-parking-warning p {
+  margin: 0 0 10px;
+  color: var(--text-sub);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.drive-parking-content {
+  margin-top: 34px;
+}
+
+.drive-parking-warning {
+  margin: 0 0 30px;
+  padding: 18px 20px;
+  border: 1px solid var(--border-dark);
+  border-left: 5px solid var(--primary-color);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.drive-parking-warning h3 {
+  margin-bottom: 8px;
+}
+
+.drive-parking-warning p:last-child {
+  margin-bottom: 0;
+}
+
+.drive-parking-group {
+  margin: 0 0 34px;
+}
+
+.drive-parking-group h3 {
+  padding-left: 10px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.drive-parking-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 12px 0 8px;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  -webkit-overflow-scrolling: touch;
+}
+
+.drive-parking-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  background: #fff;
+  color: var(--text-sub);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.drive-parking-table-free { min-width: 720px; }
+.drive-parking-table-paid { min-width: 920px; }
+
+.drive-parking-table th,
+.drive-parking-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-main);
+  text-align: left;
+  vertical-align: top;
+}
+
+.drive-parking-table thead th {
+  background: var(--bg-sub, #f5f5f5);
+  color: var(--text-main);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.drive-parking-table tbody th {
+  min-width: 130px;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.drive-parking-table tbody tr:last-child th,
+.drive-parking-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.drive-parking-table a,
+.drive-parking-page-link a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.drive-parking-source-note {
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+}
+
+.drive-parking-page-link {
+  margin-top: 12px !important;
+}
+
+.drive-parking-recommendations ul {
+  margin: 10px 0 0;
+  padding-left: 1.4em;
+  color: var(--text-sub);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.drive-parking-recommendations li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .drive-course-intro,
+  .drive-parking-content {
+    width: calc(100% - 24px);
+  }
+
+  .drive-course-intro h3,
+  .drive-parking-group h3,
+  .drive-parking-warning h3 {
+    font-size: 15px;
+  }
+
+  .drive-parking-warning {
+    padding: 14px;
+  }
+
+  .drive-parking-table {
+    font-size: 12px;
+  }
+}
+
+/*==========================================
+  ドライブコース：駐車場番号（parking.html と共通）
+==========================================*/
+#drive-full .number {
+  display: inline-flex;
+  flex: 0 0 28px;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  margin-right: 6px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+#drive-full .number.paid { background: #e66a00; }
+#drive-full .number.free { background: #0f9d58; }
+
+.asuka-course-spot-parking {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin: 0 0 5px;
+  min-width: 0;
+}
+
+.asuka-course-spot-parking .drive-parking-map-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  min-width: 0;
+  color: var(--primary-color);
+  font-size: 10px;
+  line-height: 1.25;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.asuka-course-spot-parking .drive-parking-map-link .number {
+  margin: 0;
+}
+
+.asuka-course-spot-parking .drive-parking-map-link > span:last-child {
+  min-width: 0;
+}
+
+.drive-parking-content .number {
+  vertical-align: middle;
+}
+
+.drive-parking-subheading {
+  margin: 12px 0 4px !important;
+  color: var(--text-main) !important;
+  font-weight: 600;
+}
+
+.drive-parking-no-lot-list {
+  margin: 4px 0 0;
+  padding-left: 1.4em;
+  color: var(--text-sub);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+
+
+/*==========================================
+  2026-11-02：モデルコース表示の調整
+==========================================*/
+
+/* 徒歩・サイクリングのスポット番号：Google マイマップのルート番号と同じ青 */
+#walk-half .asuka-course-stop-number,
+#walk-full .asuka-course-stop-number,
+#cycle-full .asuka-course-stop-number {
+  background: #1267ff;
+}
+
+/* START と GOAL のラベルを同じ大きさにし、START はカードの空き部分の中央へ */
+#walk-half .asuka-course-card-body > .asuka-course-start-label,
+#walk-full .asuka-course-card-body > .asuka-course-start-label,
+#cycle-full .asuka-course-card-body > .asuka-course-start-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 80px;
+  min-width: 80px;
+  height: 36px;
+  margin: auto 0 !important;
+  padding: 8px 8px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+#walk-half .asuka-course-goal-card > span,
+#walk-full .asuka-course-goal-card > span,
+#cycle-full .asuka-course-goal-card > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  min-width: 80px;
+  height: 36px;
+  padding: 8px 8px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* サイクリングの移動時間ラベルは10分以上でも1行に収める */
+#cycle-full .asuka-course-connector {
+  flex: 0 0 92px;
+  width: 92px;
+}
+
+#cycle-full .asuka-course-connector-label {
+  max-width: none;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+/* 駐車場番号を駐車場名の文字サイズに合わせる */
+#drive-full .number {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+/* 駐車場名は黒系、下線なし */
+#drive-full .asuka-course-spot-parking .drive-parking-map-link {
+  color: #333;
+  font-size: 11px;
+  text-decoration: none;
+  text-underline-offset: 0;
+}
+
+/* 駐車場リンクのホバー：サイト共通のリンクと同じく、文字色が --primary-hover（緑）に変わる */
+#drive-full .asuka-course-spot-parking .drive-parking-map-link,
+#drive-full .drive-parking-table a {
+  transition: color var(--transition-fast);
+}
+
+#drive-full .asuka-course-spot-parking .drive-parking-map-link:hover,
+#drive-full .drive-parking-table a:hover {
+  color: var(--primary-hover);
+  text-decoration: none;
+}
+
+/* 下線つきのページ内リンクは「詳しく見る」と同じく、下線を残して色だけ変える */
+#drive-full .drive-parking-page-link a {
+  transition: color var(--transition-fast);
+}
+
+#drive-full .drive-parking-page-link a:hover {
+  color: var(--primary-hover);
+}
+
+#drive-full .drive-parking-table a {
+  color: #333;
+  text-decoration: none;
+  text-underline-offset: 0;
+}
+
+/* 駐車場名の列は途中で改行しない（狭い画面では表全体を横スクロール） */
+#drive-full .drive-parking-table tbody td:nth-child(2) {
+  white-space: nowrap;
+}
+
+
+/* 最新の徒歩・1日コース：専用画像のない展示室カード */
+/* 明日香村埋蔵文化財展示室：専用画像がないため写真領域と同寸の案内パネルを表示 */
+.asuka-course-no-image-panel {
+  display: flex;
+  flex: 0 0 240px;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+  height: 180px;
+  padding: 12px;
+  box-sizing: border-box;
+  border-right: 1px solid var(--border-light);
+  background: #f3f5f1;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.asuka-course-no-image-panel span {
+  display: inline-block;
+  padding: 12px;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+
+/*==========================================
+  レンタサイクル：昼食候補と同じスライダー・カード
+  ・カード全体を押す → サイクリング・1日コースの地図へ（拡大）
+  ・公式ページへのリンクはカード内に独立して置く
+==========================================*/
+.asuka-course-rental-break {
+  margin-top: 24px;                 /* 説明文との間隔（昼食候補は44px） */
+}
+
+.asuka-course-rental-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.asuka-course-rental-card p {
+  margin-bottom: 8px;
+  -webkit-line-clamp: 3;            /* 営業所の説明は3行まで */
+}
+
+/* カード全体を押せるようにする（見出しのリンクを、カード全面に広げる） */
+.asuka-course-card-main-link {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.asuka-course-card-main-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radius-md);
+}
+
+.asuka-course-card-main-link:focus-visible::after {
+  outline: 2px solid var(--primary-hover);
+  outline-offset: -2px;
+}
+
+/* 公式ページへのリンク：カード全面のリンクより手前に置く */
+.asuka-course-rental-card .asuka-course-official-link {
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+  margin: auto 12px 0;              /* カードの下端にそろえる */
+}
+
+/* ========================================
+   一覧ページのH2（付箋風）
+   モデルコースのH2に合わせ、左の縦ラインのみ太さ5倍(25px)
+   ======================================== */
+h2.section-title {
+  padding-left: 12px;
+  border-left: 25px solid var(--primary-color);
+  font-weight: 400;
+  color: var(--text-main);
+}
