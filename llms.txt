@@ -29,7 +29,7 @@
 
 ## Optional
 
-- [サイトマップ](https://asuka-travel-guide.github.io/sitemap.xml)
+- [サイトマップ](https://asuka-travel-guide.github.io/asuka-sitemap.xml)
 - [お問い合わせ](https://asuka-travel-guide.github.io/contact.html)
 - [プライバシーポリシー](https://asuka-travel-guide.github.io/privacy.html)
 
