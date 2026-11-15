@@ -33,6 +33,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #1F2A
 .e{background:#F6E6DC;border-left:6px solid var(--warn)}
 .w{background:#FFF6D6;border-left:6px solid #8A6D00}
 .grp{margin:8px 0}.grp summary{font-weight:700}
+.mini{min-height:44px;font-size:18px;margin-top:6px}
+button.sec.mini{margin-right:0}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -230,7 +232,11 @@ function renderLinks(m) {
   box.append(mk("p", "sub", "ガイドのページ " + Object.keys(g).length + "件に紐づけ(手動は tools/links-manual.csv、外すときは tools/links-ignore.txt)"));
   Object.keys(g).sort().forEach(t => {
     box.append(mk("div", "d add", t + "(公式ページ " + g[t].length + "件)"));
-    g[t].forEach(u => box.append(mk("div", "d", (m[u].manual ? "[手動] " : "[自動] ") + (m[u].title || "") + " " + u)));
+    g[t].forEach(u => {
+      const d = mk("div", "d", (m[u].manual ? "[手動] " : "[自動] ") + (m[u].title || "") + " " + u);
+      if (!m[u].manual) { const b = mk("button", "sec mini", "外す用にURLをコピー"); b.onclick = () => navigator.clipboard.writeText(u).then(() => { b.textContent = "コピーしました"; }); d.append(b); }
+      box.append(d);
+    });
   });
 }
 function renderUnlinked(un, off) {
