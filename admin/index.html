@@ -190,7 +190,7 @@ function renderLast(runs) {  // 最後のチェックの日時と種類
   else if (Date.now() - new Date(r.finished_at).getTime() > 36 * 3600 * 1000)
     el.append(mk("div", "err", "最後のチェックから36時間以上たっています。自動実行が止まっていないか、Actionsを確認してください。"));
 }
-const GUIDE_REPO = "asuka-travel-guide/asuka-travel-guide.github.io";
+const GUIDE_REPO = location.hostname.endsWith(".github.io") ? location.hostname.split(".")[0] + "/" + location.hostname : "asuka-travel-guide/asuka-travel-guide";  // 例: asuka-travel-guide/asuka-travel-guide.github.io
 function renderAudit(a) {  // ガイドのホームページの点検結果(リンク切れ・コード不備)
   const box = $("audit");
   if (!a) { box.firstChild.textContent = "ホームページの点検(まだ実行されていません)"; return; }
