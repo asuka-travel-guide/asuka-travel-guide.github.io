@@ -2146,3 +2146,27 @@ h2.section-title {
   font-weight: 400;
   color: var(--text-main);
 }
+
+/* トップページ よくある質問（FAQ） */
+#faq summary {
+  font-size: 20px;
+}
+
+#faq summary h2 {
+  display: inline;
+}
+
+#faq .faq-q {
+  text-indent: 0;
+  margin-top: 3em;
+}
+
+#faq a {
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+#faq a:hover {
+  text-decoration: underline;
+}
