@@ -50,26 +50,54 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": [
-        "TouristAttraction",
-        "LandmarksOrHistoricalBuildings"
-      ],
+      "@type": ["TouristAttraction", "LandmarksOrHistoricalBuildings"],
       "@id": "https://asuka-travel-guide.github.io/spots/takamatsuzuka-wall.html#spot",
       "name": "高松塚壁画館",
       "description": "高松塚壁画館の極彩色壁画の模写や石槨模型、副葬品レプリカなどの展示内容、見学時間、料金、アクセス、駐車場情報を紹介します。",
       "url": "https://asuka-travel-guide.github.io/spots/takamatsuzuka-wall.html",
       "image": "https://asuka-travel-guide.github.io/images/spots/takamatsuzuka-wall/takamatsuzuka-wall.jpg",
+      "isAccessibleForFree": false,
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "JP",
+        "addressRegion": "奈良県",
+        "addressLocality": "高市郡明日香村",
+        "streetAddress": "大字平田439",
+        "postalCode": "634-0144"
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 34.46244,
         "longitude": 135.80559
       },
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "JP",
-        "addressRegion": "奈良県",
-        "addressLocality": "高市郡明日香村平田439"
-      }
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "大人",
+          "price": 300,
+          "priceCurrency": "JPY"
+        },
+        {
+          "@type": "Offer",
+          "name": "高校・大学生",
+          "price": 130,
+          "priceCurrency": "JPY"
+        },
+        {
+          "@type": "Offer",
+          "name": "小中学生",
+          "price": 70,
+          "priceCurrency": "JPY"
+        }
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -140,7 +168,7 @@
               <li><a href="../spots.html#souvenir">おみやげ</a></li>
               <li><a href="../model-course.html">モデルコース</a></li>
               <li><a href="../parking.html#parking-map">駐車場</a></li>
-              <li><a href="../toilet-map.html">トイレ</a></li>
+              <li><a href="../toilet-map.html#toilet-map">トイレ</a></li>
             </ul>
           </li>
 
@@ -211,11 +239,11 @@
 <h2>基本情報</h2>
 <table>
 <tr>
-<th>見学時間</th>
+<th>営業時間</th>
 <td>9:00～17:00（入館は16:30まで）</td>
 </tr>
 <tr>
-<th>休館日</th>
+<th>定休日</th>
 <td>12月29日～1月3日<br>4月・7月・11月・2月の第2月曜日（祝日の場合は翌平日）</td>
 </tr>
 <tr>
