@@ -4,36 +4,27 @@
 
 ## 観光する
 
-- [観光スポット一覧](https://asuka-travel-guide.github.io/spots.html): 古墳・遺跡、神社・寺院、自然、博物館、おみやげなどの観光スポット。詳細ページは44件。
-- [モデルコース](https://asuka-travel-guide.github.io/model-course.html): 徒歩（半日・1日）、サイクリング（1日）、ドライブの4コース。見学時間と移動時間の目安、昼食候補、駐車場案内つき。
-- [駐車場マップ](https://asuka-travel-guide.github.io/parking.html): 無料・有料駐車場の料金、営業時間、収容台数。
-- [トイレ案内マップ](https://asuka-travel-guide.github.io/toilet-map.html): 屋外トイレ・多機能トイレの場所と設備（バリアフリー、オストメイト対応など）。
+- [観光スポット一覧](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/): 古墳・遺跡、神社・寺院、自然、博物館、おみやげなどの観光スポット。詳細ページは44件。
+- [モデルコース](https://asuka-travel-guide.github.io/asuka-travel-guide/model-course.html): 徒歩（半日・1日）、サイクリング（1日）、ドライブの4コース。見学時間と移動時間の目安、昼食候補、駐車場案内つき。
+- [駐車場マップ](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/parking.html): 無料・有料駐車場の料金、営業時間、収容台数。
+- [トイレ案内マップ](https://asuka-travel-guide.github.io/asuka-travel-guide/toilet-map.html): 屋外トイレ・多機能トイレの場所と設備（バリアフリー、オストメイト対応など）。
 
 ## 食べる・泊まる
 
-- [食べるマップ](https://asuka-travel-guide.github.io/gourmet.html): ランチ・ディナー、カフェ・スイーツ。
-- [泊まるマップ](https://asuka-travel-guide.github.io/stay.html): 古民家宿、民宿、ペンションなどの宿泊施設。
-
-## 体験する
-
-- [体験する一覧](https://asuka-travel-guide.github.io/activity.html): いちご狩り、レンタサイクル、古代衣装、醤油しぼり、草木染め、写経、ガイドツアーなどの体験と、お祭り・伝統行事、イベント。マイマップで場所を確認できます。
+- [食べるマップ](https://asuka-travel-guide.github.io/asuka-travel-guide/gourmet/): ランチ・ディナー、カフェ・スイーツ。
+- [泊まるマップ](https://asuka-travel-guide.github.io/asuka-travel-guide/stay/): 古民家宿、民宿、ペンションなどの宿泊施設。
 
 ## 主なスポット
 
-- [石舞台古墳](https://asuka-travel-guide.github.io/spots/ishibutai.html)
-- [飛鳥寺](https://asuka-travel-guide.github.io/spots/asukadera.html)
-- [岡寺](https://asuka-travel-guide.github.io/spots/okadera.html)
-- [高松塚古墳](https://asuka-travel-guide.github.io/spots/takamatsuzuka.html)
-- [キトラ古墳](https://asuka-travel-guide.github.io/spots/kitora.html)
-- [万葉文化館](https://asuka-travel-guide.github.io/spots/manyo-museum.html)
+- [石舞台古墳](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/ishibutai.html)
+- [飛鳥寺](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/asukadera.html)
+- [岡寺](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/okadera.html)
+- [高松塚古墳](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/takamatsuzuka.html)
+- [キトラ古墳](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/kitora.html)
+- [万葉文化館](https://asuka-travel-guide.github.io/asuka-travel-guide/spots/manyo-museum.html)
 
 ## Optional
 
-- [サイトマップ](https://asuka-travel-guide.github.io/asuka-sitemap.xml)
-- [お問い合わせ](https://asuka-travel-guide.github.io/contact.html)
-- [プライバシーポリシー](https://asuka-travel-guide.github.io/privacy.html)
-
-## 注意点
-
-- 高松塚第1駐車場内トイレは2026年11月30日から利用休止（高松塚壁画館前トイレと高松塚東側トイレは対象外）。
-- 国営飛鳥歴史公園館はリニューアル工事のため利用休止中。再開は2030年頃の予定。
+- [サイトマップ](https://asuka-travel-guide.github.io/asuka-travel-guide/sitemap.xml)
+- [お問い合わせ](https://asuka-travel-guide.github.io/asuka-travel-guide/contact.html)
+- [プライバシーポリシー](https://asuka-travel-guide.github.io/asuka-travel-guide/privacy.html)
