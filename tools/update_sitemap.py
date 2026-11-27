@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""サイトマップ(asuka-sitemap.xml)とllms.txtの自動更新。標準ライブラリのみ。
+"""サイトマップ(sitemap.xml)とllms.txtの自動更新。標準ライブラリのみ。
 
-- 新しいページ  : asuka-sitemap.xml に追加（lastmod=今日・日本時間）
+- 新しいページ  : sitemap.xml に追加（lastmod=今日・日本時間）
 - 変更したページ: --changed で渡されたファイルだけ lastmod を今日に更新
 - 削除したページ: サイトマップからは消さず、ログで報告するだけ
 - llms.txt      : 「詳細ページは○件」の件数だけ更新
@@ -10,8 +10,8 @@
 import argparse, datetime, os, re, sys
 import xml.etree.ElementTree as ET
 
-BASE = "https://asuka-travel-guide.github.io/"
-SITEMAP = "asuka-sitemap.xml"
+BASE = "https://asuka-travel-guide.com/"
+SITEMAP = "sitemap.xml"
 LLMS = "llms.txt"
 EXCLUDE_ROOT = {"404.html"}
 
